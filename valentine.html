@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Une question spéciale pour toi ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET ET BASE MOBILE FIRST */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f9c5d1 0%, #f0b4c8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            position: relative;
+        }
+        
+        /* CONTENEUR PRINCIPAL */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding-top: 5px;
+        }
+        
+        /* CARTES */
+        .card {
+            background-color: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 20px 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .card:active {
+            transform: scale(0.99);
+        }
+        
+        /* ZONE IMAGE/EMOJI */
+        .image-container {
+            width: 140px;
+            height: 140px;
+            margin: 5px auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ffebee;
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
+            position: relative;
+            background: linear-gradient(135deg, #ffe6ec 0%, #ffcdd2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .image-container .fallback-emoji {
+            font-size: 65px;
+            color: #e63946;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* TYPOGRAPHIE */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #e63946;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            padding-top: 0;
+        }
+        
+        .message {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            padding: 0 5px;
+        }
+        
+        .message p {
+            margin-bottom: 8px;
+        }
+        
+        /* CONTAINER DES BOUTONS - OPTIMISÉ TOUCH */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            min-height: 140px;
+            margin-top: 15px;
+            padding: 8px 0;
+        }
+        
+        /* BOUTONS */
+        .btn {
+            padding: 16px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        #btn-yes {
+            background: linear-gradient(to right, #e63946, #ff6b7c);
+            color: white;
+            order: 1;
+        }
+        
+        #btn-no {
+            background: linear-gradient(to right, #6c757d, #8a939b);
+            color: white;
+            position: absolute;
+            order: 2;
+            z-index: 10;
+            transition: left 0.5s ease, top 0.5s ease;
+        }
+        
+        /* ÉTATS CACHÉS */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* CÉLÉBRATION */
+        .celebration {
+            text-align: center;
+            padding: 15px 10px;
+        }
+        
+        .celebration-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 5px auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ffebee;
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.3);
+            position: relative;
+            animation: heartbeat 2s infinite;
+        }
+        
+        .celebration-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .celebration-emoji {
+            font-size: 80px;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .celebration h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+        
+        .celebration p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        /* SECTION VIDÉO - CORRIGÉE */
+        .video-section {
+            margin: 20px 0 10px;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 320px;
+            height: 180px;
+            margin: 0 auto 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            background: #000;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Style pour vidéos paysage (ratio 16:9) */
+        .video-container.landscape video {
+            object-fit: contain;
+            background-color: #000;
+        }
+        
+        /* Style pour vidéos portrait (ratio 9:16) */
+        .video-container.portrait {
+            height: 280px;
+            max-width: 280px;
+        }
+        
+        .video-container.portrait video {
+            object-fit: cover;
+        }
+        
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .video-btn {
+            padding: 8px 18px;
+            background: linear-gradient(to right, #e63946, #ff6b7c);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+            font-size: 0.9rem;
+        }
+        
+        .video-btn:active {
+            transform: translateY(2px);
+        }
+        
+        .video-caption {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+        
+        /* ANIMATIONS */
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle-animation 1s forwards;
+            z-index: 1;
+        }
+        
+        @keyframes sparkle-animation {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        /* CŒURS FLOTTANTS */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(230, 57, 70, 0.25);
+            animation: float 8s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* INSTRUCTIONS */
+        .instructions {
+            color: #777;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            font-style: italic;
+            padding: 0 10px;
+        }
+        
+        /* ÉCRAN TRÈS PETIT (iPhone SE etc.) */
+        @media (max-width: 350px) {
+            .card {
+                padding: 15px 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .image-container, .celebration-image-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .image-container .fallback-emoji {
+                font-size: 55px;
+            }
+            
+            .btn {
+                padding: 14px 20px;
+                font-size: 1.1rem;
+                max-width: 230px;
+            }
+            
+            .celebration h2 {
+                font-size: 2.2rem;
+            }
+            
+            .video-container {
+                max-width: 280px;
+                height: 160px;
+            }
+            
+            .video-container.portrait {
+                height: 240px;
+                max-width: 240px;
+            }
+        }
+        
+        /* TABLETTES ET GRANDS ÉCRANS */
+        @media (min-width: 768px) {
+            .card {
+                padding: 25px 20px;
+                max-width: 400px;
+            }
+            
+            .image-container, .celebration-image-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .image-container .fallback-emoji {
+                font-size: 70px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+            }
+            
+            .buttons-container {
+                min-height: 150px;
+            }
+            
+            .btn {
+                max-width: 280px;
+            }
+            
+            .video-container {
+                max-width: 350px;
+                height: 200px;
+            }
+            
+            .video-container.portrait {
+                height: 300px;
+                max-width: 300px;
+            }
+        }
+        
+        /* ANIMATION D'APPARITION */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* INDICATEUR DE CHARGEMENT */
+        .image-loading, .video-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            border-radius: inherit;
+        }
+        
+        .loader {
+            width: 35px;
+            height: 35px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #e63946;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* BOUTON RETOUR */
+        .back-button {
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: linear-gradient(to right, #6c757d, #8a939b);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+            font-size: 0.9rem;
+        }
+        
+        .back-button:active {
+            transform: translateY(2px);
+        }
+        
+        /* CORRECTION ESPACE EN HAUT */
+        @media (max-height: 700px) {
+            body {
+                padding: 5px;
+                align-items: flex-start;
+                padding-top: 10px;
+            }
+            
+            .container {
+                padding-top: 0;
+            }
+            
+            .card {
+                margin-bottom: 10px;
+                padding: 15px 12px;
+            }
+            
+            .image-container, .celebration-image-container {
+                width: 110px;
+                height: 110px;
+                margin: 0 auto 12px;
+            }
+            
+            h1 {
+                font-size: 1.9rem;
+                margin-bottom: 5px;
+            }
+            
+            .video-container {
+                height: 150px;
+                max-width: 280px;
+            }
+            
+            .video-container.portrait {
+                height: 220px;
+                max-width: 220px;
+            }
+        }
+        
+        /* CORRECTION POUR ÉCRAN TRÈS PETIT EN HAUTEUR */
+        @media (max-height: 600px) {
+            .card {
+                padding: 12px 10px;
+            }
+            
+            .image-container, .celebration-image-container {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 10px;
+            }
+            
+            .image-container .fallback-emoji {
+                font-size: 50px;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .message {
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+            }
+            
+            .buttons-container {
+                min-height: 120px;
+                margin-top: 10px;
+            }
+            
+            .btn {
+                padding: 12px 18px;
+                font-size: 1.1rem;
+                max-width: 240px;
+            }
+            
+            .video-container {
+                height: 130px;
+                max-width: 250px;
+            }
+            
+            .video-container.portrait {
+                height: 200px;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="hearts-container"></div>
+    
+    <div class="container">
+        <!-- ÉCRAN DE QUESTION -->
+        <div id="question-card" class="card">
+            <div class="image-container" id="image-container">
+                <!-- IMAGE PRINCIPALE -->
+                <img src="e0462279820fc6a90566b8488d2b2372.webp" alt="Notre photo" id="main-image">
+            </div>
+            
+            <h1>Ma Princesse Cathy 💖,</h1>
+            
+            <div class="message">
+                <p>Chaque moment à tes côtés est précieux, et aujourd'hui j'ai une question très spéciale pour toi...</p>
+                <p>Veux-tu être ma Valentine Bébé ? ❤️</p>
+            </div>
+            
+            <div class="buttons-container">
+                <button id="btn-yes" class="btn">
+                    <i class="fas fa-heart"></i> OUI !
+                </button>
+                <button id="btn-no" class="btn">
+                    <i class="fas fa-times"></i> Non
+                </button>
+            </div>
+            
+        </div>
+        
+        <!-- ÉCRAN DE CÉLÉBRATION (APRÈS "OUI") -->
+        <div id="celebration-card" class="card hidden">
+            <div class="celebration">
+                <!-- IMAGE DE CÉLÉBRATION -->
+                <div class="celebration-image-container">
+                    <img src="IMG-20251112-WA0034.jpg" alt="Notre moment spécial" id="celebration-image">
+                    <div class="fallback-emoji" id="celebration-fallback">💖</div>
+                </div>
+                
+                <h2>YOUPIIII ! 🎉</h2>
+                <p>Je t'aime enormement ma Chaterine Iromou ma princesse d'amour ❤️</p>
+                
+                <!-- SECTION VIDÉO -->
+                <div class="video-section">
+                    <div class="video-container" id="video-container">
+                        <video id="our-video" controls playsinline preload="metadata">
+                            <!-- VIDÉO -->
+                            <source src="lv_0_20260209183706.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <div class="video-loading hidden" id="video-loading">
+                            <div class="loader"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button class="video-btn" id="play-video">
+                            <i class="fas fa-play"></i> Lire
+                        </button>
+                        <button class="video-btn" id="pause-video">
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                    </div>
+                    
+                    <p class="video-caption">Certains de nos meilleurs moments ensemble ❤️</p>
+                </div>
+                
+                <button class="back-button" id="back-button">
+                    <i class="fas fa-arrow-left"></i> Revoir la question
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURATION DES MÉDIAS
+        const config = {
+            mainImageUrl: "e0462279820fc6a90566b8488d2b2372.webp",
+            celebrationImageUrl: "IMG-20251112-WA0034.jpg",
+            videoUrl: "lv_0_20260209183706.mp4"
+        };
+        
+        // ÉLÉMENTS DU DOM
+        let btnYes, btnNo, videoElement, playBtn, pauseBtn, backBtn;
+        let celebrationImage, celebrationFallback, videoContainer;
+        
+        // INITIALISATION
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser les éléments
+            initElements();
+            
+            // Charger les médias personnalisés
+            loadCustomMedia();
+            
+            // Créer des cœurs flottants
+            createHearts();
+            
+            // FORMAT MOBILE
+            let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Gestionnaire pour le bouton "OUI"
+            btnYes.addEventListener('click', handleYesClick);
+            btnYes.addEventListener('touchend', handleYesClick);
+            
+            // Gestionnaires pour le bouton "NON"
+            if (isMobile) {
+                btnNo.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    moveNoButton();
+                });
+                btnNo.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                });
+            } else {
+                btnNo.addEventListener('mouseover', moveNoButton);
+                btnNo.addEventListener('click', moveNoButton);
+            }
+            
+            // Gestionnaires vidéo
+            playBtn.addEventListener('click', playVideo);
+            pauseBtn.addEventListener('click', pauseVideo);
+            backBtn.addEventListener('click', goBackToQuestion);
+            
+            // Événements vidéo
+            videoElement.addEventListener('loadedmetadata', detectVideoOrientation);
+            videoElement.addEventListener('waiting', showVideoLoading);
+            videoElement.addEventListener('canplay', hideVideoLoading);
+            videoElement.addEventListener('playing', hideVideoLoading);
+            
+            // Bouger le bouton "NON" au chargement
+            setTimeout(moveNoButton, 800);
+            
+            // Ajouter des étincelles aléatoires
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    createSparkle(
+                        Math.random() * window.innerWidth,
+                        Math.random() * window.innerHeight
+                    );
+                }
+            }, 2500);
+            
+            // Ajuster l'espacement selon la taille de l'écran
+            adjustSpacing();
+            window.addEventListener('resize', adjustSpacing);
+            window.addEventListener('orientationchange', function() {
+                setTimeout(adjustSpacing, 300);
+                setTimeout(moveNoButton, 300);
+            });
+        });
+        
+        function initElements() {
+            btnYes = document.getElementById('btn-yes');
+            btnNo = document.getElementById('btn-no');
+            videoElement = document.getElementById('our-video');
+            playBtn = document.getElementById('play-video');
+            pauseBtn = document.getElementById('pause-video');
+            backBtn = document.getElementById('back-button');
+            celebrationImage = document.getElementById('celebration-image');
+            celebrationFallback = document.getElementById('celebration-fallback');
+            videoContainer = document.getElementById('video-container');
+        }
+        
+        function adjustSpacing() {
+            // Ajuster dynamiquement l'espacement selon la hauteur
+            const screenHeight = window.innerHeight;
+            const container = document.querySelector('.container');
+            const card = document.querySelector('.card');
+            
+            if (screenHeight < 700) {
+                container.style.paddingTop = '5px';
+                if (card) {
+                    card.style.padding = '12px 10px';
+                }
+            } else {
+                container.style.paddingTop = '10px';
+                if (card) {
+                    card.style.padding = '20px 15px';
+                }
+            }
+        }
+        
+        function loadCustomMedia() {
+            // Charger l'image de célébration
+            if (config.celebrationImageUrl && config.celebrationImageUrl.trim() !== '') {
+                const img = new Image();
+                img.onload = function() {
+                    celebrationImage.src = config.celebrationImageUrl;
+                    celebrationFallback.style.display = 'none';
+                    celebrationImage.style.display = 'block';
+                };
+                img.onerror = function() {
+                    console.log("L'image de célébration n'a pas pu être chargée.");
+                    celebrationFallback.style.display = 'flex';
+                    celebrationImage.style.display = 'none';
+                };
+                img.src = config.celebrationImageUrl;
+            }
+            
+            // Charger la vidéo
+            if (config.videoUrl && config.videoUrl.trim() !== '') {
+                videoElement.querySelector('source').src = config.videoUrl;
+                videoElement.load();
+            }
+        }
+        
+        // Détecter l'orientation de la vidéo
+        function detectVideoOrientation() {
+            if (videoElement.videoWidth && videoElement.videoHeight) {
+                const ratio = videoElement.videoWidth / videoElement.videoHeight;
+                
+                // Retirer les classes précédentes
+                videoContainer.classList.remove('landscape', 'portrait');
+                
+                // Ajouter la classe appropriée
+                if (ratio > 1) {
+                    // Paysage (16:9, 4:3, etc.)
+                    videoContainer.classList.add('landscape');
+                    console.log("Vidéo détectée: Paysage (ratio: " + ratio.toFixed(2) + ")");
+                } else {
+                    // Portrait (9:16, 3:4, etc.)
+                    videoContainer.classList.add('portrait');
+                    console.log("Vidéo détectée: Portrait (ratio: " + ratio.toFixed(2) + ")");
+                }
+            }
+        }
+        
+        // FONCTIONS
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = isMobile() ? 12 : 20;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heart.style.fontSize = `${Math.random() * 12 + 8}px`;
+                container.appendChild(heart);
+            }
+        }
+        
+        function isMobile() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+        
+        function moveNoButton() {
+            const container = document.querySelector('.buttons-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            const maxX = containerRect.width - btnNo.offsetWidth - 10;
+            const maxY = containerRect.height - btnNo.offsetHeight - 10;
+            
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+            
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+            
+            createSparkle(
+                containerRect.left + randomX + btnNo.offsetWidth/2,
+                containerRect.top + randomY + btnNo.offsetHeight/2
+            );
+            
+            if (navigator.vibrate && isMobile()) {
+                navigator.vibrate(50);
+            }
+        }
+        
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+        
+        function handleYesClick() {
+            document.getElementById('question-card').classList.add('hidden');
+            document.getElementById('celebration-card').classList.remove('hidden');
+            
+            createConfetti();
+            playCelebrationSound();
+            
+            if (navigator.vibrate && isMobile()) {
+                navigator.vibrate([100, 50, 100, 50, 200]);
+            }
+            
+            // Précharger et détecter l'orientation de la vidéo
+            if (config.videoUrl && config.videoUrl.trim() !== '') {
+                videoElement.load();
+            }
+        }
+        
+        function goBackToQuestion() {
+            document.getElementById('celebration-card').classList.add('hidden');
+            document.getElementById('question-card').classList.remove('hidden');
+            
+            // Mettre la vidéo en pause
+            if (!videoElement.paused) {
+                videoElement.pause();
+            }
+        }
+        
+        function playVideo() {
+            videoElement.play().catch(e => {
+                console.log("Erreur de lecture vidéo:", e);
+                alert("La vidéo ne peut pas être lue. Vérifiez le lien ou votre connexion.");
+            });
+        }
+        
+        function pauseVideo() {
+            videoElement.pause();
+        }
+        
+        function showVideoLoading() {
+            document.getElementById('video-loading').classList.remove('hidden');
+        }
+        
+        function hideVideoLoading() {
+            document.getElementById('video-loading').classList.add('hidden');
+        }
+        
+        function createConfetti() {
+            const colors = ['#e63946', '#ffbe0b', '#3a86ff', '#fb5607', '#8338ec'];
+            const confettiCount = isMobile() ? 60 : 100;
+            const container = document.getElementById('hearts-container');
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('heart');
+                confetti.innerHTML = ['❤️', '💖', '🎉', '🥂', '✨'][Math.floor(Math.random() * 5)];
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.fontSize = `${Math.random() * 12 + 8}px`;
+                confetti.style.animationDuration = `${Math.random() * 2 + 1.5}s`;
+                confetti.style.animationDelay = `${Math.random() * 0.3}s`;
+                
+                container.appendChild(confetti);
+                
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.remove();
+                    }
+                }, 4000);
+            }
+        }
+        
+        function playCelebrationSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const notes = [523.25, 659.25, 783.99, 1046.50];
+                
+                notes.forEach((frequency, index) => {
+                    setTimeout(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = frequency;
+                        oscillator.type = 'sine';
+                        
+                        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 0.5);
+                    }, index * 200);
+                });
+            } catch (e) {
+                console.log("Son désactivé");
+            }
+        }
+        
+        // FONCTION POUR CHANGER LES MÉDIAS DYNAMIQUEMENT
+        function updateMedia(newConfig) {
+            if (newConfig.mainImageUrl) {
+                document.getElementById('main-image').src = newConfig.mainImageUrl;
+            }
+            
+            if (newConfig.celebrationImageUrl) {
+                const img = new Image();
+                img.onload = function() {
+                    celebrationImage.src = newConfig.celebrationImageUrl;
+                    celebrationFallback.style.display = 'none';
+                    celebrationImage.style.display = 'block';
+                };
+                img.src = newConfig.celebrationImageUrl;
+            }
+            
+            if (newConfig.videoUrl) {
+                videoElement.querySelector('source').src = newConfig.videoUrl;
+                videoElement.load();
+                config.videoUrl = newConfig.videoUrl;
+            }
+        }
+    </script>
+</body>
+</html>
